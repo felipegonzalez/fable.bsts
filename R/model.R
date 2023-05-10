@@ -84,7 +84,7 @@ train_bsts <- function(.data, specials, iterations = 1000, ...) {
   }
 
   # Prepare data for modelling
-  tbl_data <- as_tibble(.data)[c(rlang::expr_text(index(.data)), measured_vars(.data))]
+  tbl_data <- as_tibble(.data)[c(rlang::expr_text(index_var(.data)), measured_vars(.data))]
   colnames(tbl_data) <- c("index", "y")
 
   xts_data <- xts::xts(x = tbl_data$y, order.by = tbl_data$index)
