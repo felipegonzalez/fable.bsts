@@ -16,6 +16,8 @@ Imports:
     lubridate,
     bsts,
     dplyr (>= 0.8.0)
+    future,
+    future.apply
 Suggests: 
     tsibbledata,
     testthat,
