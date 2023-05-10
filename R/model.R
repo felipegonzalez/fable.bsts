@@ -549,11 +549,12 @@ forecast.fbl_bsts <- function(object, new_data, specials = NULL, ...) {
   sim <- split(pred$distribution, col(pred$distribution))
 
   # Return forecasts
-  fabletools::construct_fc(
-    point = pred$mean,
-    sd = unname(purrr::map_dbl(sim, stats::sd)),
-    dist = fabletools::dist_sim(sim)
-  )
+  #fabletools::construct_fc(
+  #  point = pred$mean,
+  #  sd = unname(purrr::map_dbl(sim, stats::sd)),
+  #  dist = fabletools::dist_sim(sim)
+  #)
+  distributional::dist_sample(x = sim) 
 }
 
 # EXTRACT FITTED ===================================================================================
