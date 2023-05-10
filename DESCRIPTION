@@ -18,7 +18,8 @@ Imports:
     dplyr (>= 0.8.0),
     future,
     future.apply,
-    tidyverse
+    tidyverse,
+    feasts
 Suggests: 
     tsibbledata,
     testthat,
