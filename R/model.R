@@ -21,7 +21,7 @@ specials_bsts <- new_specials(
     type <- match.arg(type)
     as.list(environment())
   }
-  ,seasonal = function(period = NULL) {
+  ,seasonal = function(period = NULL, period_bsts = NULL) {
     # Extract data interval
     interval <- tsibble::interval(self$data)
     interval <- with(
@@ -32,7 +32,7 @@ specials_bsts <- new_specials(
         lubridate::microseconds(microsecond) + lubridate::nanoseconds(nanosecond))
 
     # Compute bsts interval
-    period <- fabletools::get_frequencies(period, self$data, .auto = "smallest")
+    period <- fabletools::get_frequencies(period_bsts, self$data, .auto = "smallest")
     period <- period * suppressMessages(interval/lubridate::days(1))
 
     as.list(environment())
@@ -192,7 +192,7 @@ train_bsts <- function(.data, specials, iterations = 1000, ...) {
         }
 
         state <- bsts::AddSeasonal(state.specification = state, y = xts_data,
-          nseasons = seasonal$period
+          nseasons = seasonal$period_bsts
         )
     }
   }
